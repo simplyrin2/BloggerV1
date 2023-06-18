@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/search.css') }}" />
+{% endblock %}
+
+{% block page %}
+        <!-- SEARCH PAGE -->
+            <form action="" method="POST" class="post-form">
+                <div class="search-title">
+                  <input type="text" name="query" id="query" placeholder="username or name" required>
+                </div>
+                <div class="search-submit">
+                  <button type="submit">Search</button>
+                </div>
+              </form>
+
+              <!-- SEARCH RESULTS -->
+              <div class="search-results">
+                {% if results!=False and results|length > 0 %}
+                {% for user in results %}
+                <div class="search-result">
+                    <a href="/profile/{{user.username}}" class="profile">
+                        <div class="profile-img">
+                          {% if user.pic %}
+                          <img src="{{url_for('static', filename='')}}/images/uploads/{{user.pic}}" />
+                          {% else %}
+                          <img src="{{url_for('static', filename='')}}/images/profile.png"/>
+                          {% endif %}
+                        </div>
+                        <div class="profile-details">
+                            <p class="name">{% if user.name | length > 25 %}{{user.name[0:25]}}...{% else %}{{user.name}}{% endif %}</p>
+                            <p class="username">{{user.username}}</p>
+                        </div>
+                      </a>
+                    <div class="action-btn">
+                        <a href="/profile/{{user.username}}">View Profile</a>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% if results == False %}
+              <div class="search-result" style="display: block; text-align: center">No users found</div>
+              {% endif %}
+              </div>    
+        </div>
+        <!-- SEARCH PAGE -->
+{% endblock %}

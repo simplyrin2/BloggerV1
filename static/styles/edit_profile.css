@@ -1,0 +1,107 @@
+.action-bar {
+    display: flex;
+    gap: 4rem;
+    color: #0100ca;
+    width: 100%;
+}
+
+.delete-action {
+    display: inline-block;
+    text-decoration: none;
+    color: #751919;
+    padding: 0.5rem 0.8125rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    /* border: 1px solid rgb(255, 158, 158); */
+    transition: background-color 200ms;
+    border-radius: 1rem;
+}
+
+.delete-action:hover {
+    background-color: #fde4e4;
+    cursor: pointer;
+}
+
+.delete-confirmation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0);
+}
+
+.confirm-wrapper {
+    padding: 2rem 2rem;
+    background-color: #ffff;
+    z-index: +100;
+    border-radius: 0.5rem;
+}
+
+.confirm-text {
+    color: #00004f90;
+    font-weight: 600;
+}
+
+.confirm-actions {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.confirm-action {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #F1F1F1;
+    color: #0100ca;
+    padding: 0.5rem 0.8125rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: background-color 200ms;
+    margin-top: 1rem;
+    border-radius: 1rem;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.confirm:hover {
+    background-color: rgb(255, 204, 204);
+}
+
+.deny {
+    border: 1px solid black;
+}
+
+.overlay-back {
+    position: absolute;
+    background-color: #00003ae0;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+}
+
+.search-submit {
+    width: 100%;
+}
+
+.search-submit > .button {
+    padding: 0.8rem 1.25rem;
+    font-size: 1.1rem;
+    background-color: #0100ca;
+    color: #f0f0f0;
+    width: 100%;
+    transition: background-color 200ms;
+    font-weight: 700;
+    border: 2px solid #0100ca;
+    border-radius: 1.5rem;
+}
+
+.search-submit > .button:hover {
+    cursor: pointer;
+    color: #0100ca;
+}

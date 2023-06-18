@@ -1,0 +1,36 @@
+{% from 'form_renderer.html' import render_field %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+    <div class="container">
+
+        <div class="col nav">
+            <div class="col-1">
+                <div class="header">
+                    <h2>Blogger</h2>
+                    <form action="/login" method="POST" class="post-form">
+                        {{ form.hidden_tag() }}
+                        <div class="input-block">
+                            {{ render_field(form.username,class_='input', placeholder='username') }}
+                        </div>
+                        <div class="input-block">
+                            {{ render_field(form.password,class_='input', placeholder='password') }}
+                        </div>
+                        <div class="search-submit">
+                            {{ form.submit(class_='button') }}
+                        </div>
+                      </form>
+                      <a class="action" href="/signup">Don't have an account? <strong>Signup</strong></a>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

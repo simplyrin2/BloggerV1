@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/create.css') }}" />
+{% endblock %}
+
+{% block page %}
+            <div class="back-wrapper" style="
+                padding: 1rem;
+                text-decoration: none;
+                width: fit-content;
+            ">
+                <a href="/profile">
+                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2827 17.1154C10.0952 17.3028 9.84088 17.4082 9.57571 17.4082C9.31055 17.4082 9.05624 17.3028 8.86871 17.1154L2.86871 11.1154C2.68124 10.9278 2.57593 10.6735 2.57593 10.4084C2.57593 10.1432 2.68124 9.88889 2.86871 9.70137L8.86871 3.70137C9.05732 3.51921 9.30992 3.41841 9.57211 3.42069C9.83431 3.42297 10.0851 3.52814 10.2705 3.71355C10.4559 3.89896 10.5611 4.14977 10.5634 4.41196C10.5657 4.67416 10.4649 4.92676 10.2827 5.11537L5.98971 9.40837H17.5757C17.8409 9.40837 18.0953 9.51372 18.2828 9.70126C18.4704 9.8888 18.5757 10.1431 18.5757 10.4084C18.5757 10.6736 18.4704 10.9279 18.2828 11.1155C18.0953 11.303 17.8409 11.4084 17.5757 11.4084H5.98971L10.2827 15.7014C10.4702 15.8889 10.5755 16.1432 10.5755 16.4084C10.5755 16.6735 10.4702 16.9278 10.2827 17.1154V17.1154Z" fill="black"/>
+                        </svg>
+                </a>
+            </div>
+           
+            <form action="" method="POST" class="post-form" enctype="multipart/form-data">
+                <h3>Edit Post</h3>
+                <div class="create-title">
+                  <input type="text" name="title" id="title" placeholder="Title" value="{{post.title}}" maxlength="50" disabled required>
+                </div>
+                <div class="create-content">
+                  <textarea type="text" name="content" id="content" placeholder="Content" rows="10" cols="45" maxlength="500" required>{{post.content}}</textarea>
+                </div>
+                <div class="create-img">
+                    <input type="file" name="img" id="fileInput"  accept=".png, .jpg, .jpeg" hidden="hidden">
+                    <div class="img-input">
+                        <div class="imgInput-placeholder">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 9V12M12 12V15M12 12H15M12 12H9M21 12C21 13.1819 20.7672 14.3522 20.3149 15.4442C19.8626 16.5361 19.1997 17.5282 18.364 18.364C17.5282 19.1997 16.5361 19.8626 15.4442 20.3149C14.3522 20.7672 13.1819 21 12 21C10.8181 21 9.64778 20.7672 8.55585 20.3149C7.46392 19.8626 6.47177 19.1997 5.63604 18.364C4.80031 17.5282 4.13738 16.5361 3.68508 15.4442C3.23279 14.3522 3 13.1819 3 12C3 9.61305 3.94821 7.32387 5.63604 5.63604C7.32387 3.94821 9.61305 3 12 3C14.3869 3 16.6761 3.94821 18.364 5.63604C20.0518 7.32387 21 9.61305 21 12Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>   
+                            <p id="img-placeholder-text">Change Image</p>
+                        </div>
+                        <img src="" id="img-preview">  
+                    </div>
+                    <div id="cancel">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#4B4B4B" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>   
+                    </div>
+                  </div>
+                <div class="create-submit">
+                  <button type="submit">Save</button>
+                </div>
+              </form>
+        </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='scripts/create.js') }}"></script>
+{% endblock %} 

@@ -1,0 +1,84 @@
+form {
+    padding: 0 0 0.875rem 1.625rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1.5px solid #0000ca35;
+}
+
+#query {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+#query::placeholder {
+    color: #CCCCCC;
+}
+
+input {
+    border: none;
+    width: 80%;
+}
+
+input:focus {
+    outline: none;
+}
+
+.search-submit > button {
+    padding: 0.5rem 1.25rem;
+    border: none;
+    background-color: #0100ca;
+    color: #eeeeee;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.9rem;
+}
+
+.search-result {
+    padding: 1.5rem 1.625rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.profile {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: #000041;
+}
+
+.profile-img {
+    width: 2.875rem;
+    height: 2.875rem;
+    background-color: #CCCCCC;
+    border-radius: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-img > img {
+    width: 100%;
+}
+
+.username {
+    font-size: 0.7rem;
+    color: #0303a9d6;
+    font-weight: 500;
+    margin-top: 0.2rem;
+}
+
+.action-btn > a{
+    display: inline-block;
+    text-decoration: none;
+    background-color: #F1F1F1;
+    color: #0100ca;
+    padding: 0.5rem 0.8125rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 0.8rem;
+}
+

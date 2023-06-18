@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/search.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/notification.css') }}" />
+{% endblock %}
+
+{% block page %}
+            <div class="back-wrapper">
+                <h3>Notifications</h3>
+                <div class="action-btn">
+                    {% if notifications|length > 0 %}
+                    <a href="/clear_all">Clear all</a>
+                    {% endif %}
+                </div>
+            </div>
+              <!-- SEARCH RESULTS -->
+              {% if notifications|length > 0 %}
+              <div class="search-results">
+                    {% for n in notifications %}
+                    <div class="search-result">
+                        <a href="{{n.action}}" class="profile">
+                            <div class="profile-details">
+                                <p class="name">{{n.content}}</p>
+                                <p class="username" style="opacity: 0.8">{{timestamp[loop.index-1]}}</p>                                 
+                            </div>
+                        </a>
+                        <div class="action-btn">
+                            <a href="/clear/{{n.notification_id}}">Clear</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+              </div>
+
+              {% else %}
+              <div class="no-content-msg">No notifications</div>
+              {% endif %}
+        </div>
+        <!-- SEARCH PAGE -->
+{% endblock %}

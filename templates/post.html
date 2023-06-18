@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/post.css') }}" />
+{% endblock %}
+
+{% block page %}
+            <div class="back-wrapper">
+                <a id="back-button" href="#">
+                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2827 17.1154C10.0952 17.3028 9.84088 17.4082 9.57571 17.4082C9.31055 17.4082 9.05624 17.3028 8.86871 17.1154L2.86871 11.1154C2.68124 10.9278 2.57593 10.6735 2.57593 10.4084C2.57593 10.1432 2.68124 9.88889 2.86871 9.70137L8.86871 3.70137C9.05732 3.51921 9.30992 3.41841 9.57211 3.42069C9.83431 3.42297 10.0851 3.52814 10.2705 3.71355C10.4559 3.89896 10.5611 4.14977 10.5634 4.41196C10.5657 4.67416 10.4649 4.92676 10.2827 5.11537L5.98971 9.40837H17.5757C17.8409 9.40837 18.0953 9.51372 18.2828 9.70126C18.4704 9.8888 18.5757 10.1431 18.5757 10.4084C18.5757 10.6736 18.4704 10.9279 18.2828 11.1155C18.0953 11.303 17.8409 11.4084 17.5757 11.4084H5.98971L10.2827 15.7014C10.4702 15.8889 10.5755 16.1432 10.5755 16.4084C10.5755 16.6735 10.4702 16.9278 10.2827 17.1154V17.1154Z" fill="black"/>
+                        </svg>
+                </a>
+            </div>
+
+            <div class="feed-post">
+                    <div class="post-details">
+                        <a href="/profile/{{post.created_by.username}}" class="author">{% if post.created_by.name | length > 25 %} {{post.created_by.name[0:26]}}... {% else %} {{post.created_by.name}} {% endif %}</a>
+                        <p class="timestamp">{{post.created_on.strftime('%d %b %Y, %I:%M %p')}}</p>
+                    </div>
+                    <div class="post-content">
+                        <p class="title">{{post.title}}</p>
+                        <p class="content">{{post.content}}</p>
+                    </div>
+                    {% if post.img %}
+                    <div class="post-image">
+                        <div class="overlay-back">
+                        </div>
+                        <img class="image" src="{{url_for('static', filename='')}}/images/uploads/{{post.img}}" />
+                    </div>
+                    {% endif %}
+                </a>
+                <div class="post-engagement">
+                    <a href="/like/{{post.post_id}}" class="like eng">
+                        <svg {% if current_user in post.likes %}class="fill"{% endif %} width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.2385 1.7385C1.9251 2.0519 1.67649 2.42396 1.50688 2.83343C1.33727 3.24291 1.24997 3.68178 1.24997 4.125C1.24997 4.56821 1.33727 5.00709 1.50688 5.41656C1.67649 5.82604 1.9251 6.1981 2.2385 6.5115L8 12.273L13.7615 6.5115C14.3944 5.87856 14.75 5.02011 14.75 4.125C14.75 3.22989 14.3944 2.37144 13.7615 1.7385C13.1286 1.10556 12.2701 0.749978 11.375 0.749978C10.4799 0.749978 9.62144 1.10556 8.9885 1.7385L8 2.727L7.0115 1.7385C6.6981 1.4251 6.32604 1.17649 5.91657 1.00688C5.50709 0.837268 5.06822 0.749969 4.625 0.749969C4.18179 0.749969 3.74291 0.837268 3.33343 1.00688C2.92396 1.17649 2.5519 1.4251 2.2385 1.7385V1.7385Z" stroke="#4646ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>        
+                    </a>                    
+                    <a href="/likes/{{post.post_id}}" class="eng like-count">
+                        <p>{{post.likes | length}} {% if post.likes | length == 1 %}Like{% else %}Likes{% endif %}</p>   
+                    </a>
+                    {% if post.author == current_user_id %}
+                    <a href="/archieve/{{post.post_id}}" class="comment eng">
+                        <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.99561 5.41321H17.9956M3.99561 5.41321C3.46517 5.41321 2.95646 5.20249 2.58139 4.82742C2.20632 4.45235 1.99561 3.94364 1.99561 3.41321C1.99561 2.88278 2.20632 2.37407 2.58139 1.99899C2.95646 1.62392 3.46517 1.41321 3.99561 1.41321H17.9956C18.526 1.41321 19.0347 1.62392 19.4098 1.99899C19.7849 2.37407 19.9956 2.88278 19.9956 3.41321C19.9956 3.94364 19.7849 4.45235 19.4098 4.82742C19.0347 5.20249 18.526 5.41321 17.9956 5.41321M3.99561 5.41321V15.4132C3.99561 15.9436 4.20632 16.4523 4.58139 16.8274C4.95646 17.2025 5.46517 17.4132 5.99561 17.4132H15.9956C16.526 17.4132 17.0347 17.2025 17.4098 16.8274C17.7849 16.4523 17.9956 15.9436 17.9956 15.4132V5.41321M8.99561 9.41321H12.9956" stroke="#4646ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>      
+                        <p class="like-count">{% if post.archieved == False %}Archieve{% else %}Unarchieve{% endif %}</p>
+                    </a> 
+                    {% endif %} 
+                </div>
+            </div>
+            <div class="comment-count">
+                {{post.comments | length}} {% if post.comments | length == 1 %}Comment{% else %}Comments{% endif %}
+            </div>
+            {% if post.archieved != True %}
+            <div class="comment-bar">
+                <form action="/comment/{{post.post_id}}" method="POST" class="post-form">
+                    <div class="create-content">
+                        <textarea type="text" name="comment" id="comment" placeholder="your comment" rows="2" cols="35" maxlength="200" required></textarea>
+                      </div>
+                    <div class="search-submit">
+                      <button type="submit">Comment</button>
+                    </div>
+                  </form>
+            </div>
+            {% endif %}
+            <div class="comments" id="comments-section">
+                {% for comment in post.comments %}
+                <div class="comment-block">
+                    <div class="comment-header">
+                        {% if current_user_id == comment.commentor.user_id %}
+                        <a href="/profile/{{comment.commentor.username}}" class="comment-user">
+                            <p class="comment-name">You</p>
+                        </a>
+                        {% else %}
+                        <a href="/profile/{{comment.commentor.username}}" class="comment-user">
+                            <p class="comment-name">{% if comment.commentor.name | length > 25 %}{{comment.commentor.name[0:25]}}...{% else %}{{comment.commentor.name}}{% endif %}</p>
+                            <p class="comment-username">@{{comment.commentor.username}}</p>
+                        </a>
+                        {% endif %}
+                        {% if post.created_by.user_id == current_user_id or comment.commentor.user_id == current_user_id %}
+                        <a href="/remove_comment/{{comment.comment_id}}" class="remove-btn">Remove</a>
+                        {% endif %}
+                    </div>
+                    <p class="comment-content">
+                        {{comment.comment}}
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+              </div>
+        </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='scripts/post.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,527 @@
+openapi: 3.0.0
+info:
+  title: Blogger API
+  description: Blogger API for CRUD operations on users and posts
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:5000/
+paths:
+  /api/user/{username}:
+    description: End point to read, update and delete a user resource.
+    get:
+      description: Operation to Read user resource.
+      parameters:
+        - in: path
+          name: username
+          required: true
+          schema:
+            type: string
+            example: indran1311
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: user object
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                    example: 2
+                  username:
+                    type: string
+                    example: indran1311
+                  name:
+                    type: string
+                    example: Indranil Patra
+                  bio:
+                    type: string
+                    example: User Bio Example
+                  pic:
+                    type: string
+                  follower_count:
+                    type: integer
+                    example: 100
+                  following_count:
+                    type: integer
+                    example: 100
+                  posts:
+                    type: array
+                    items:
+                      properties:
+                        post_id:
+                          type: integer
+                          example: 10
+                        title:
+                          type: string
+                          example: Title Example
+                        content:
+                          type: string
+                          example: Content Example
+                        like_count:
+                          type: integer
+                          example: 20
+                        comment_count:
+                          type: integer
+                          example: 20
+                        post_img:
+                          type: string
+        '500':
+          description: Internal Server Error
+        '404':
+          description: User not found
+    put:
+      description: Operation to update the user resource.
+      parameters:
+        - in: path
+          name: username
+          required: true
+          schema:
+            type: string
+            example: indran1311
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Indranil Patra
+                bio:
+                  type: string
+                  example: User Bio Example
+                image:
+                    type: string
+                    format: binary
+      responses:
+        '200':
+          description: Successfuly updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                    example: 2
+                  username:
+                    type: string
+                    example: indran1311
+                  name:
+                    type: string
+                    example: Indranil Patra
+                  bio:
+                    type: string
+                    example: User Bio Example
+                  follower_count:
+                    type: integer
+                    example: 100
+                  following_count:
+                    type: integer
+                    example: 100
+            image/png/jpg/jpeg:
+              schema:
+                title: User image
+                type: object
+                properties:
+                  image:
+                    type: string
+                    format: binary
+        '404':
+          description: User not found
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '403':
+          description: Forbidden. You are not allowed for this operation.
+    delete:
+      description: Operation to delete the user resource
+      parameters:
+        - in: path
+          name: username
+          required: true
+          schema:
+            type: string
+            example: indran1311
+      responses:
+        '200':
+          description: Successfully Deleted
+        '404':
+          description: User not found
+        '500':
+          description: Intenal Server Error
+        '403':
+          description: Forbidden. You are not allowed for this operation.
+
+  /api/signup:
+    description: End point to create user resource
+    post:
+      description: Operation to create the user resource
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: ['username', 'password', 'name']
+              properties:
+                username:
+                  type: string
+                  example: indran1311
+                password:
+                  type: string
+                  example: 123456thisisapassword
+                name:
+                  type: string
+                  example: Indranil Patra
+                bio:
+                  type: string
+                  example: User Bio Example
+                image:
+                    type: string
+                    format: binary
+      responses:
+        '201':
+          description: Successfully Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                    example: 2
+                  username:
+                    type: string
+                    example: indran1311
+                  name:
+                    type: string
+                    example: Indranil Patra
+                  bio:
+                    type: string
+                    example: User Bio Example
+            image/png/jpg/jpeg:
+              schema:
+                title: User image
+                type: object
+                properties:
+                  profile_picture:
+                    type: string
+                    format: binary
+        '409':
+          description: username already exists
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+
+  /api/access_token:
+    description: Url to login and get token
+    post:
+      description: Operation to get authorization token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: indran1311
+                password:
+                  type: string
+                  example: examplepassword
+      responses:
+        '200':
+          description: Successfully Accessed token
+          content:
+            application/json:
+              schema:
+                title: token object
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: thisisatoken
+        '409':
+          description: Username or password incorrect
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+  /api/post/{post_id}:
+    description: URL to perform read operation on post
+    get:
+      description: URL to get the post details for the post_id
+      parameters:
+        - in: path
+          name: post_id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  post_id:
+                    type: integer
+                    example: 10
+                  title:
+                    type: string
+                    example: Title Example
+                  content:
+                    type: string
+                    example: Content Example
+                  like_count:
+                    type: integer
+                    example: 20
+                  comment_count:
+                    type: integer
+                    example: 20
+                  post_img:
+                    type: string
+                    format: base64
+        '404':
+          description: Post not found
+        '500':
+          description: Internal Server Error
+
+
+  /api/user/{username}/post:
+    description: URL to perform create and read operations on posts
+    get:
+      description: URL to get the list of posts, the user has posted.
+      parameters:
+        - in: path
+          name: username
+          required: true
+          schema:
+            type: string
+            example: indran1311
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    post_id:
+                      type: integer
+                      example: 10
+                    title:
+                      type: string
+                      example: Title Example
+                    content:
+                      type: string
+                      example: Content Example
+                    like_count:
+                      type: integer
+                      example: 20
+                    comment_count:
+                      type: integer
+                      example: 20
+                    post_img:
+                      type: string
+                      format: binary
+        '404':
+          description: User not found
+        '500':
+          description: Internal Server Error
+
+    post:
+      description: Create a new post
+      parameters:
+        - in: path
+          name: username
+          required: true
+          schema:
+            type: string
+            example: indran1311
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: ['title', 'content']
+              properties:
+                title:
+                  type: string
+                  example: Title Example
+                content:
+                  type: string
+                  example: Content Example
+                image:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Post created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  properties:
+                    title:
+                      type: string
+                      example: Title Example
+                    content:
+                      type: string
+                      example: Content Example
+                    image:
+                      type: string
+                      format: binary
+        '404':
+          description: User not found
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '403':
+          description: Forbidden. You are not allowed for this operation.
+
+  /api/user/{username}/post/{post_id}:
+    description: URL to perform update and delete operations on a post of a user.
+    put:
+      description: Update an exisiting post
+      parameters:
+        - in: path
+          name: username
+          required: true
+          schema:
+            type: string
+            example: indran1311
+        - in: path
+          name: post_id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: ['content']
+              properties:
+                content:
+                  type: string
+                  example: Content Example
+                image:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Post updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  properties:
+                    title:
+                      type: string
+                      example: Title Example
+                    content:
+                      type: string
+                      example: Content Example
+                    image:
+                      type: string
+                      format: base64
+        '404':
+          description: User not found
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '403':
+          description: Forbidden. You are not allowed for this operation.
+    delete:
+      description: URL to delete post by the user.
+      parameters:
+        - in: path
+          name: username
+          required: true
+          schema:
+            type: string
+            example: indran1311
+        - in: path
+          name: post_id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Successfully deleted
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '403':
+          description: Forbidden. You are not allowed for this operation.
+        '404':
+          description: User not found
+        '500':
+          description: Internal Server Error

@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cabin:wght@400;500;600;700;800&family=Raleway:wght@400;500&family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    height: 100vh;
+    word-break: break-all;
+}
+
+h3 {
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+}
+
+input {
+    background-color: inherit;
+}
+
+textarea {
+    background-color: inherit;
+}
+
+.back-wrapper {
+    display: flex;
+    align-items: center;
+    color:#0100ca;
+}
+
+.back-wrapper > a {
+    padding: 1rem;
+    text-decoration: none;
+    display: flex;
+    width: fit-content;
+}
+
+.container {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+}
+
+.col {
+    display: inline-block;
+}
+
+.nav {
+    border-right: 1.5px solid #0000ca35;
+}
+
+.col-1 {
+    padding: 5.7rem;
+    position: sticky;
+    top:0;
+}
+
+.header {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    gap: 20rem;
+} 
+
+.g1 {
+    display: flex;
+    flex-direction: column; 
+    gap: 2.8rem;
+    align-items: flex-start;
+}
+
+.header-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding: 0.5rem 0.8rem;
+    text-decoration: none;
+    color: #57577e;
+    position: relative;
+}
+
+.active {
+    font-weight: 700;
+    color: #0100ca;
+    background-color: #0000d612;
+    border-radius: 1rem;
+    
+}
+
+.active > .header-icon {
+    fill: black;
+}
+
+.col-2 {
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+    margin-top: 5rem;
+    width: 29.125rem;
+    overflow-y: auto;
+    position: relative;
+}
+
+.mob-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 4rem;
+    z-index: +1000;
+    background-color: #ffff;
+}
+
+.blank-space {
+    display: none;
+    height: 4rem;
+}
+
+.mob-nav {
+    display: none;
+}
+
+.flash-messages {
+    text-align: center;
+    padding: 0.5rem 0;
+    background-color: #c3c3ff;
+    margin-bottom: 0.5rem;
+}
+
+.no-content-msg {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    color: rgba(168, 168, 168, 0.936); 
+    height: 100%;
+}
+
+.badge {
+    display: none;
+    height: 0.5rem;
+    width: 0.5rem;
+    border-radius: 100%;
+    background-color: #0100ca;
+    position: absolute;
+    top: 2px;
+    right: 1px;
+}
+
+.visible {
+    display: block;
+}
+
+.header-icon {
+    /* display: none; */
+    height: 1.3rem;
+    width: 1.3rem;
+}
+
+.logout {
+    display: none;
+}

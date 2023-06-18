@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/search.css') }}" />
+{% endblock %}
+
+{% block page %}
+            <div class="back-wrapper">
+                <a id="back-button" href="#">
+                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2827 17.1154C10.0952 17.3028 9.84088 17.4082 9.57571 17.4082C9.31055 17.4082 9.05624 17.3028 8.86871 17.1154L2.86871 11.1154C2.68124 10.9278 2.57593 10.6735 2.57593 10.4084C2.57593 10.1432 2.68124 9.88889 2.86871 9.70137L8.86871 3.70137C9.05732 3.51921 9.30992 3.41841 9.57211 3.42069C9.83431 3.42297 10.0851 3.52814 10.2705 3.71355C10.4559 3.89896 10.5611 4.14977 10.5634 4.41196C10.5657 4.67416 10.4649 4.92676 10.2827 5.11537L5.98971 9.40837H17.5757C17.8409 9.40837 18.0953 9.51372 18.2828 9.70126C18.4704 9.8888 18.5757 10.1431 18.5757 10.4084C18.5757 10.6736 18.4704 10.9279 18.2828 11.1155C18.0953 11.303 17.8409 11.4084 17.5757 11.4084H5.98971L10.2827 15.7014C10.4702 15.8889 10.5755 16.1432 10.5755 16.4084C10.5755 16.6735 10.4702 16.9278 10.2827 17.1154V17.1154Z" fill="black"/>
+                        </svg>
+                </a>
+                <h3>{{title}}</h3>
+            </div>
+              <!-- SEARCH RESULTS -->
+              {% if users|length > 0 %}
+              <div class="search-results">
+                    {% for user in users %}
+                    <div class="search-result">
+                        <a href="/profile/{{user.username}}" class="profile">
+                            <div class="profile-img">
+                                {% if user.pic %}
+                                <img src="{{url_for('static', filename='')}}/images/uploads/{{user.pic}}" />
+                                {% else %}
+                                <img src="{{url_for('static', filename='')}}/images/profile.png"/>
+                                {% endif %}
+                            </div>
+                            <div class="profile-details">
+                                <p class="name">{% if user.name | length > 25 %}{{user.name[0:25]}}...{% else %}{{user.name}}{% endif %}</p>                                
+                                <p class="username">{{user.username}}</p>
+                            </div>
+                        </a>
+                        <div class="action-btn">
+                            <a href="/profile/{{user.username}}">View Profile</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+              </div>
+
+              {% else %}
+              <div class="no-content-msg">No {{request.url.split('/')[-2]}}</div>
+              {% endif %}
+        </div>
+        <!-- SEARCH PAGE -->
+{% endblock %}

@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+}
+
+.col-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5.7rem;
+}
+
+.header {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    height: 50vh;
+    justify-content: center;
+} 
+
+.g1 {
+    display: flex;
+    flex-direction: column; 
+    gap: 3.875rem;
+    align-items: center;
+}
+
+.header-links {
+    display: block;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: #1E1E1E;
+}
+
+.active {
+    font-weight: 700;
+    border-bottom: 1px solid black;
+}
+
+.col-2 {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 5rem;
+    width: 29.125rem;
+}
+
+h2 {
+    margin-bottom: 2rem;
+    color: #0100ca;
+}
+
+form {
+    padding: 0 0 1.625rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.input-block {
+    border-bottom: 2.5px solid #0000ca50;
+    padding: 0.8rem 1rem; 
+}
+
+.input {
+    font-size: 1.2rem;
+}
+
+.input::placeholder {
+    color: #CCCCCC;
+}
+
+textarea {
+    border: none;
+    resize: none;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+input {
+    border: none;
+    width: 100%;
+}
+
+input:focus {
+    outline: none;
+}
+
+
+.search-submit {
+    width: 100%;
+}
+
+.search-submit > .button {
+    padding: 0.8rem 1.25rem;
+    font-size: 1.2rem;
+    background-color: #0100ca;
+    color: #fafafa;
+    width: 100%;
+    transition: background-color 200ms;
+    font-weight: 700;
+    border: 2px solid #0100ca;
+    border-radius: 0.5rem;
+}
+
+.search-submit > .button:hover {
+    cursor: pointer;
+    background-color: #ffff;
+    color: #0100ca;
+}
+
+
+.action-btn > a{
+    display: inline-block;
+    text-decoration: none;
+    background-color: #F1F1F1;
+    color: #4D4D4D;
+    padding: 0.5rem 0.8125rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.action {
+    text-decoration: none;
+    color: #a3a3a3;
+}
+
+.create-img {
+    position: relative;
+}
+
+.img-input  {
+    width: 10rem;
+    height: 10rem;
+    overflow: hidden;
+    margin-top: 1rem;
+    background-color: #e8e8ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 1px solid #e8e8ff;
+    border-radius: 100%;
+}
+
+.imgInput-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    position: absolute;
+}
+
+#cancel {
+    width: 24px;
+    height: 24px;
+    border-radius: 50px;
+    background-color: #ffff;
+
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: none;
+    opacity: 0.8;
+}
+
+#img-placeholder-text {
+    font-size: 0.8rem;
+}
+
+.error-message {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: rgb(200, 0, 0);
+    padding: 5px 10px;
+    margin-top: 5px;
+    font-size: 0.8rem;
+}
+
+#close-icon:hover {
+    cursor: pointer;
+} 

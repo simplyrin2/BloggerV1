@@ -1,0 +1,13 @@
+.back-wrapper {
+    justify-content: space-between; 
+    padding: 0 1rem;
+}
+
+.search-results {
+    margin-top: 1rem;
+}
+
+.search-result {
+    margin-bottom: 0.5rem;
+    border-bottom: 1.5px solid #0000ca35;
+}
